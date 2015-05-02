@@ -16,14 +16,22 @@ public class MainClass {
 
 	public static void main(String[] args) throws ClassNotFoundException,
 			SQLException {
+		
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		System.out.println("Connecting to database...");
 		Scanner sc=new Scanner(System.in);
 		System.out.println("enter oracle password");
 		String pass=sc.next();
 		// c = null;
-		c = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE",
-				"system", pass);
+		
+		try {
+			c = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE",
+					"system", pass);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("Wrong Password");
+		}
+	if(c!=null) {
 		st = c.createStatement();
 		System.out.println("connected Successfully");
 
@@ -80,7 +88,7 @@ public class MainClass {
 		}
 		else System.out.println("plz enter Right input");
 
-	}
+	}}
 
 	public static void Success() throws SQLException {
 		Scanner sc = new Scanner(System.in);
