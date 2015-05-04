@@ -1,10 +1,9 @@
-package Admin;
+package admin;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import com.Registration.MainClass;
 
 public class PassRecover {
 	static Scanner sc;
@@ -37,7 +36,7 @@ public class PassRecover {
 	public static void recover() throws SQLException {
 		
 		sc = new Scanner(System.in);
-		SettingSecurity.choice();
+		SecurityQuestion.choice();
 		int choice = sc.nextInt();
 	//System.out.println("enter security Choice");
 		int d=0;
@@ -49,14 +48,15 @@ public class PassRecover {
 			
 		}
 		System.out.println("Enter Security Answer ");
+		
 		pass = sc.next();
 
-		String ch1 = SettingSecurity.getChoice1();
-		String ch2 = SettingSecurity.getChoice2();
-		String ch3 = SettingSecurity.getChoice3();
-		String ch4 = SettingSecurity.getChoice4();
-		String ch5 = SettingSecurity.getChoice5();
-		rs=MainClass.st
+		String ch1 = SecurityQuestion.getChoice1();
+		String ch2 = SecurityQuestion.getChoice2();
+		String ch3 = SecurityQuestion.getChoice3();
+		String ch4 = SecurityQuestion.getChoice4();
+		String ch5 = SecurityQuestion.getChoice5();
+		rs=Main.st
 				.executeQuery(sql);
 
 		while (rs.next()) {
@@ -68,7 +68,8 @@ public class PassRecover {
 			//System.out.println(getQuest());
 
 		}
-		rs1 = MainClass.st.executeQuery(select);
+		rs1 = Main.st.executeQuery(select);
+		boolean flag=false;
 
 		while(rs1.next()) {
 			
@@ -80,6 +81,23 @@ public class PassRecover {
 				System.out.println("UserName := "+rs1.getString("username"));
 
 				System.out.println("Password := "+rs1.getString("password"));
+				flag=true;
+				int c1=0,c2=-1;
+				while(c1++<3 &&c2==-1) {
+				System.out.println("Press 1 for login 2 for exit ");
+				
+				
+				int o=sc.nextInt();
+				if(o==1) { Administrator.logIn(); c2=0;}else if(o==2) {
+					System.out.println("System is exiting...");
+					c2=0;
+					System.exit(0);
+				}
+				else {
+					System.out.println("Input 1 or 2");
+				}}
+					
+				
 
 			} else
 				System.out.println("Wrong Answer ");
@@ -92,7 +110,7 @@ public class PassRecover {
 
 				System.out.println("Password := "+rs1.getString("password"));
 
-
+				flag=true;
 			} else
 				System.out.println("Wrong Answer ");
 
@@ -104,7 +122,7 @@ public class PassRecover {
 
 				System.out.println("Password := "+rs1.getString("password"));
 
-
+				flag=true;
 			} else
 				System.out.println("Wrong Answer ");
 
@@ -115,7 +133,7 @@ public class PassRecover {
 				System.out.println("UserName := "+rs1.getString("username"));
 
 				System.out.println("Password := "+rs1.getString("password"));
-
+				flag=true;
 
 			} else
 				System.out.println("Wrong Answer ");
@@ -127,7 +145,7 @@ public class PassRecover {
 				System.out.println("UserName := "+rs1.getString("username"));
 
 				System.out.println("Password := "+rs1.getString("password"));
-
+				flag=true;
 			} else
 				System.out.println("Wrong Answer ");
 
@@ -137,7 +155,7 @@ public class PassRecover {
 
 		
 	}
-	if(count<2) {
+	if(count<2 && !flag) {
 		count++;
 		//System.out.println();
 		//System.out.println(count);

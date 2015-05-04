@@ -1,8 +1,8 @@
-package com.Registration;
+package bean;
 
 
 
-public class Register {
+public class BeanClass {
 
 public String getFather_name() {
 	return father_name;

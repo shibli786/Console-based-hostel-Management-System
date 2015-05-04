@@ -1,25 +1,32 @@
-package Admin;
+package admin;
 
 import java.io.Console;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import com.Registration.MainClass;
 
 public class Administrator {
 	static final String sql = "select * from ADMINDETAIL";
 	static ResultSet rs;
 
+
+	
+	
+	
 	public static void onCreate() throws SQLException {
 		// String drop="drop table AdminDetail";
 		String sql = "Create table ADMINDETAIL(name varchar(220),username varchar(23),password varchar(30))";
 		// MainClass.st.execute(drop);
-		MainClass.st.execute(sql);
+		Main.st.execute(sql);
 		System.out.println("Admin table is created");
 	}
 
-	private static void onInsert() throws SQLException {
+	
+	
+	
+	private static void onInsert() throws SQLException 
+	{
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 		System.out.println("enter name");
@@ -33,8 +40,8 @@ public class Administrator {
 		String sql = "insert into ADMINDETAIL values(" + "'"
 				+ Administrator.getName() + "','" + Administrator.getUsername()
 				+ "','" + Administrator.getPassword() + "'" + ")";
-		MainClass.st.execute(sql);
-		SettingSecurity.securityQuestion();
+		Main.st.execute(sql);
+		SecurityQuestion.securityQuestion();
 	}
 
 	static String username;;
@@ -43,21 +50,32 @@ public class Administrator {
 		Administrator.username = username;
 	}
 
-	public static void setPassword(String password) {
+	
+	public static void setPassword(String password)
+	{
 		Administrator.password = password;
 	}
 
 	static int Count = 0;
 
-	 public static String getUsername() throws SQLException {
-		rs = MainClass.st.executeQuery(sql);
+	
+	public static String getUsername() throws SQLException 
+	{
+		rs = Main.st.executeQuery(sql);
 		while (rs.next()) {
 			username = rs.getString("username");
 		}
 		return username;
 	}
 
-	private static String getPassword() throws SQLException {
+	
+	
+	
+	
+	private static String getPassword() throws SQLException
+	
+	
+	{
 		while (rs.next()) {
 			password = rs.getString("password");
 
@@ -65,51 +83,69 @@ public class Administrator {
 		return password;
 	}
 
+
+	
 	static String password;
 	static String name = null;
 
-	public static String getName() {
+	
+	
+	public static String getName()
+	{
 		return name;
 	}
 
-	public static void setName(String name) {
+	
+	
+	public static void setName(String name)
+    {
 		Administrator.name = name;
 	}
 
+	
 	Console c;
 
+
+	
+	
 	public static void signUp() throws SQLException {
 		onCreate();
+		
 		onInsert();
 
 		logIn();
 
 	}
 
-	public static void logIn() throws SQLException {
+	
+	
+	
+	public static void logIn() throws SQLException
+	{
 
 		// TODO Auto-generated method stub
 		String password1;
-		
-		Console c=System.console();
+
+		Console c = System.console();
 		System.out.println("Enter login detail");
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Enter UserID :");
-		
+
 		String username1 = sc.next();
 		System.out.print("Enter password :");
-		if(c!=null) password1=new String(c.readPassword());
+		if (c != null)
+			password1 = new String(c.readPassword());
 		else
-		 password1 = sc.next();
+			password1 = sc.next();
 
-		rs = MainClass.st.executeQuery(sql);
+		rs = Main.st.executeQuery(sql);
 		while (rs.next()) {
 
 			if (username1.equals(rs.getString("username"))
 					&& password1.equals(rs.getString("password"))) {
 
 				System.out.println("Login Success");
-				MainClass.Success();
+				Main.Success();
 			}
 
 			else {
@@ -119,11 +155,11 @@ public class Administrator {
 					String ch = sc.next().toLowerCase();
 					if (ch.equals("y")) {
 						PassRecover.recover();
-					}
-					else {
+					} else {
+
 						System.out.println("System is exiting...");
+						System.exit(0);
 					}
-					
 
 				}
 
@@ -142,7 +178,7 @@ public class Administrator {
 
 	private void se() throws SQLException {
 		// TODO Auto-generated method stub
-		rs = MainClass.st.executeQuery(sql);
+		rs = Main.st.executeQuery(sql);
 		while (rs.next()) {
 
 			System.out.println(rs.getString("username"));

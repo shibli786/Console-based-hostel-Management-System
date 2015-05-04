@@ -1,31 +1,29 @@
-package Students;
+package students;
 
-import java.beans.Statement;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import com.Registration.MainClass;
+import admin.Main;
 
-public class StudentManipulation {
+
+public class StudentOperations {
 	static Scanner sc;
 
 	static ResultSet rs;
-	Statement st;
 
 	public static void onSelect() throws SQLException {
 		// TODO Auto-generated method stub
 
 		String sql = "Select * from STUDENT";
-		rs = MainClass.st.executeQuery(sql);
+		rs = Main.st.executeQuery(sql);
 		while (rs.next()) {
 
 			String father_name = rs.getString("father_name");
 			String name = rs.getString("name");
 			String address = rs.getString("address");
 			String mobile_no = rs.getString("mobile_no");
-			Date dob;
+			//Date dob;
 			String branch = rs.getString("branch");
 			String roll_no = rs.getString("roll_no");
 			String room_no = rs.getString("room_no");
@@ -46,13 +44,13 @@ public class StudentManipulation {
 		sc = new Scanner(System.in);
 		System.out.println("Enter Student Roll No");
 		String roll = sc.next();
-		System.out.println("Enter Coloumn name you want to update");
-		String coloumn = sc.next();
+		System.out.println("Enter N-name ");
+		String coloumn = sc.nextLine();
 		System.out.println("enter new values");
-		String value = sc.next();
+		String value = sc.nextLine();
 		String sql = "update student set " + coloumn + "= '" + value + "'"
 				+ "where roll_no='" + roll + "'";
-		MainClass.st.execute(sql);
+		Main.st.execute(sql);
 		 System.out.println("updated Successfully");
 
 	}
@@ -65,13 +63,19 @@ public class StudentManipulation {
 
 		String roll = sc.next();
 		String sql = "delete STUDENT where roll_no =" + "'" + roll + "'";
-		MainClass.st.execute(sql);
+		Main.st.execute(sql);
 		System.out.println(" Roll no of deleted Student record is " + roll);
 
 	}
 
-	public static void onSearch() {
-		// TODO Auto-generated method stub
+	public static void onSearch()
+	{
 
+	}
+
+	public static void onDrop() 
+	{
+		// TODO Auto-generated method stub
+		
 	}
 }

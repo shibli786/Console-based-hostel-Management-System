@@ -1,12 +1,11 @@
-package Admin;
+package admin;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import com.Registration.MainClass;
 
-public class SettingSecurity {
+public class SecurityQuestion {
 	private static final String choice1 = "what is your childhood nickname";
 
 	public static String getChoice1() {
@@ -36,12 +35,12 @@ public class SettingSecurity {
 	private static String ans;
 
 	public static void securityQuestion() throws SQLException {
-		MainClass.st.execute("drop table question");
+		Main.st.execute("drop table question");
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 
 		String sql = "Create table Question(question varchar(230),ans varchar(50))";
-		MainClass.st.execute(sql);
+		Main.st.execute(sql);
 		System.out.println("security table is created");
 		choice();
 
@@ -61,7 +60,7 @@ public class SettingSecurity {
 		case 1: {
 			String sql = "INSERT INTO QUESTION VALUES('" + choice1 + "','"
 					+ ans + "'" + ")";
-			MainClass.st.execute(sql);
+			Main.st.execute(sql);
 			System.out.println("inserted successfully");
 		}
 			break;
@@ -69,28 +68,28 @@ public class SettingSecurity {
 		case 2: {
 			String sql = "INSERT INTO QUESTION VALUES('" + choice2 + "','"
 					+ ans + "'" + ")";
-			MainClass.st.execute(sql);
+			Main.st.execute(sql);
 			System.out.println("inserted successfully");
 		}
 			break;
 		case 3: {
 			String sql = "INSERT INTO QUESTION VALUES('" + choice3 + "','"
 					+ ans + "'" + ")";
-			MainClass.st.execute(sql);
+			Main.st.execute(sql);
 			System.out.println("inserted successfully");
 		}
 			break;
 		case 4: {
 			String sql = "INSERT INTO QUESTION VALUES('" + choice4 + "','"
 					+ ans + "'" + ")";
-			MainClass.st.execute(sql);
+			Main.st.execute(sql);
 			System.out.println("inserted successfully");
 		}
 			break;
 		case 5: {
 			String sql = "INSERT INTO QUESTION VALUES('" + choice5 + "','"
 					+ ans + "'" + ")";
-			MainClass.st.execute(sql);
+			Main.st.execute(sql);
 			System.out.println("inserted successfully");
 		}
 			break;

@@ -1,6 +1,7 @@
-package com.Registration;
+package bean;
 
-public class StatffRegisteration  extends Register{
+
+public class StaffBean  extends BeanClass{
 	private String qualification;
 	private byte previous_experience;
 	private boolean previous_college;

@@ -1,27 +1,44 @@
-package com.Registration;
+package admin;
 
+import java.io.Console;
 import java.sql.*;
 import java.util.Scanner;
 
-import Admin.Administrator;
-import Admin.PassRecover;
+import students.*;
 
-import com.Registration.*;
 
-public class MainClass {
+
+public class Main {
 	public static int ans = 0;
 
 	static Connection c;
 	public static Statement st;
+	public static ResultSet rs;
 
 	public static void main(String[] args) throws ClassNotFoundException,
 			SQLException {
+		boolean f2=true;
 		
-		Class.forName("oracle.jdbc.driver.OracleDriver");
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		} catch (Exception e1) {
+			System.out.println("Oracle jdbc driver is missing\n" +
+					"Download jar file ojdbc6.jar and place it in java-jre-lib-ext folder \n" +
+					"");
+			f2=false;
+		}
+		if(f2) {
 		System.out.println("Connecting to database...");
 		Scanner sc=new Scanner(System.in);
-		System.out.println("enter oracle password");
-		String pass=sc.next();
+		System.out.print("enter oracle password :");
+		String pass;
+		Console con=System.console();
+		if(con!=null) {
+			pass=new String(con.readPassword());
+			
+		}
+		else {
+		 pass=sc.next();}
 		// c = null;
 		
 		try {
@@ -88,19 +105,21 @@ public class MainClass {
 		}
 		else System.out.println("plz enter Right input");
 
-	}}
+	}}}
 
 	public static void Success() throws SQLException {
 		Scanner sc = new Scanner(System.in);
 		System.out
-				.println("press 1 for Student Registration & 2 for Staff registration");
+				.println("Press 1 for Student Dashboard  \nPress 2 for Staff Dashboard \nPress 3 for Admin Profile ");
 
 		int ch = sc.nextInt();
 		if (ch == 1) {
 			Switching.switching();
 		} else if (ch == 2) {
 			System.out.println("under process");
-		} else {
+		} 
+		else if(ch==3) {}
+		else {
 			System.out.println("wrong input");
 		}
 	}

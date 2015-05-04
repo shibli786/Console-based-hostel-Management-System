@@ -1,9 +1,8 @@
-package com.Registration;
+package students;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import Students.StudentManipulation;
 
 public class Switching {
 	static StudentSchema studentschema;
@@ -15,7 +14,7 @@ public class Switching {
 	public static  void switching() throws SQLException {
 		studentschema= new StudentSchema();
 		
-		System.out.println("Type CREATE/INSERT/SELECT/DROP/SEARCH for relevant operations " );
+		System.out.println("Type CREATE/INSERT/SELECT/UPDATE/DROP/SEARCH/DELETE/EXIT for relevant operations " );
 		Scanner sc= new Scanner(System.in);
 		String choice= sc.next().toLowerCase();
 		
@@ -30,15 +29,25 @@ public class Switching {
 			
 			
 		case "insert":StudentRegistration.onInsert();
+		switching();
 		break;
-		case "select":StudentManipulation.onSelect();
+		case "select":StudentOperations.onSelect();
+		switching();
 		break;
-		case "search":StudentManipulation.onSearch();
+		case "search":StudentOperations.onSearch();
+		switching();
 		break;
-		case "update":StudentManipulation.onUpdate();
+		case "update":StudentOperations.onUpdate();
+		switching();
 		break;
-		case "delete":StudentManipulation.onDelete();
+		case "delete":StudentOperations.onDelete();
+		switching();
 		break;
+		case "drop":StudentOperations.onDrop();
+		switching();
+		break;
+		case "exit":System.out.println("System is exiting...\nexited");System.exit(0);
+		default:System.out.println("eneter correct choice");switching();break;
 			
 		
 		
